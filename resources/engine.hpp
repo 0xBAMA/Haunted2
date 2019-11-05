@@ -1,30 +1,4 @@
-#include <vector>
-#include <iostream>
-using std::cout;
-using std::endl;
-
-#include <random>
-
-// GLEW
-#define GLEW_STATIC
-#include <GL/glew.h>
-
-
-// GLUT
-#include <GL/freeglut.h>
-#include <GL/freeglut_ext.h>
-
-
-// Shader Compilation
-#include "shaders/Shader.h"
-
-
-#define GLM_FORCE_SWIZZLE
-#include "glm/glm.hpp"                  //general vector types
-#include "glm/gtc/matrix_transform.hpp" // for glm::ortho
-#include "glm/gtc/type_ptr.hpp"         //to send matricies gpu-side
-
-
+#include "common.hpp"
 //this is based on the project from this summer - here implemented with polygons, and rendered using perspective projection
 // - from what I can gather, we're going to be wildly more efficient with polygons than with the voxel scheme
 
@@ -36,10 +10,6 @@ using std::endl;
     //draw the cylinders, the exhaust pipes if we get to that, perhaps with a uniform toggle to enable/disable
     //and representing the cycle with a color mixed with calculated lighting for the sleeve - denser during some
     //parts of the cycle than others.
-
-
-
-
 
 
 
@@ -71,7 +41,7 @@ public:
   //  probably going to represent it as disks (disqes, short for disquettes), past the valve,
 
   //calls all the add functions, so there is geometry to draw all of the engine components
-  void init(std::vector<glm::vec3>& points, std::vector<glm::vec3>& normals, std::vector<glm::vec3>& colors);
+  void init(std::vector<glm::vec3>& points, std::vector<glm::vec3>& normals, std::vector<glm::vec4>& colors);
 
 
   //calls glDrawArrays(GL_TRIANGLES, ____start, num_pts_____); for each of the things, for each cylinder
@@ -82,16 +52,22 @@ private:
   int crank_start, num_pts_crank;
   int conrod_start, num_pts_conrod;
   int piston_start, num_pts_piston;
-  int valves_start, num_pts_valves;
+  int intake_valves_start, num_pts_intake_valves;
+  int exhaust_valves_start, num_pts_exhaust_valves;
   int cams_start, num_pts_cams;
   int exhaust_start, num_pts_exhaust;
 
+  //translation vectors & rotation amounts are held here, vec3s and floats
+
+
+
+
   //call these during init - set the integer values to keep track of the indices, same way as in ship.h
-  void add_crank(std::vector<glm::vec3>& points, std::vector<glm::vec3>& normals, std::vector<glm::vec3>& colors);
-  void add_conrod(std::vector<glm::vec3>& points, std::vector<glm::vec3>& normals, std::vector<glm::vec3>& colors);
-  void add_piston(std::vector<glm::vec3>& points, std::vector<glm::vec3>& normals, std::vector<glm::vec3>& colors);
-  void add_valves(std::vector<glm::vec3>& points, std::vector<glm::vec3>& normals, std::vector<glm::vec3>& colors);
-  void add_cams(std::vector<glm::vec3>& points, std::vector<glm::vec3>& normals, std::vector<glm::vec3>& colors);
+  void add_crank(std::vector<glm::vec3>& points, std::vector<glm::vec3>& normals, std::vector<glm::vec4>& colors);
+  void add_conrod(std::vector<glm::vec3>& points, std::vector<glm::vec3>& normals, std::vector<glm::vec4>& colors);
+  void add_piston(std::vector<glm::vec3>& points, std::vector<glm::vec3>& normals, std::vector<glm::vec4>& colors);
+  void add_valves(std::vector<glm::vec3>& points, std::vector<glm::vec3>& normals, std::vector<glm::vec4>& colors);
+  void add_cams(std::vector<glm::vec3>& points, std::vector<glm::vec3>& normals, std::vector<glm::vec4>& colors);
   // void add_exhaust(std::vector<glm::vec3>& points, std::vector<glm::vec3>& normals, std::vector<glm::vec3>& colors);
 
 
@@ -99,3 +75,47 @@ private:
 
 
 };
+
+
+
+
+void engine::init(std::vector<glm::vec3>& points, std::vector<glm::vec3>& normals, std::vector<glm::vec4>& colors)
+{
+  add_crank(points, normals, colors);
+  add_conrod(points, normals, colors);
+  add_piston(points, normals, colors);
+  add_valves(points, normals, colors);
+  add_cams(points, normals, colors);
+}
+
+
+
+void engine::add_crank(std::vector<glm::vec3>& points, std::vector<glm::vec3>& normals, std::vector<glm::vec3>& colors)
+{//this is just the one unit, to draw it all, it's 4 rotated units
+
+}
+
+
+void add_conrod(std::vector<glm::vec3>& points, std::vector<glm::vec3>& normals, std::vector<glm::vec3>& colors)
+{//again, only need one of these
+
+}
+
+
+void add_piston(std::vector<glm::vec3>& points, std::vector<glm::vec3>& normals, std::vector<glm::vec3>& colors)
+{//just one
+
+}
+
+
+void add_valves(std::vector<glm::vec3>& points, std::vector<glm::vec3>& normals, std::vector<glm::vec3>& colors)
+{//do 4 per cylinder just have the 2 and 2 for exhaust and intake because they animate separately
+
+}
+
+
+
+void add_cams(std::vector<glm::vec3>& points, std::vector<glm::vec3>& normals, std::vector<glm::vec3>& colors)
+{//one cam, drawn 4 times, rotated
+
+}

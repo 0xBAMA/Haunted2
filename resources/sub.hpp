@@ -8,7 +8,7 @@
 //  Date: 6 November 2019
 //******************************************************************************
 
-#include "common.h"
+#include "common.hpp"
 
 //******************************************************************************
 //  Class: Sub
@@ -609,18 +609,18 @@ void Sub::generate_points()
     {
       if(midp.z > 0)
       {
-        colors.push_back(glm::vec4(0.5,0.0,0.5,1.0));
-        colors.push_back(glm::vec4(0.5,0.0,0.5,1.0));
-        colors.push_back(glm::vec4(0.5,0.0,0.5,1.0));
+        // colors.push_back(glm::vec4(0.5,0.0,0.5,1.0));
+        // colors.push_back(glm::vec4(0.5,0.0,0.5,1.0));
+        // colors.push_back(glm::vec4(0.5,0.0,0.5,1.0));
         points.push_back(radius*glm::normalize(x.points[0]) + glm::vec3(xoffset,yoffset,zoffset));
         points.push_back(radius*glm::normalize(x.points[1]) + glm::vec3(xoffset,yoffset,zoffset));
         points.push_back(radius*glm::normalize(x.points[2]) + glm::vec3(xoffset,yoffset,zoffset));
       }
       else
       {
-        colors.push_back(glm::vec4(0.15,0.0,0.15,1.0));
-        colors.push_back(glm::vec4(0.15,0.0,0.15,1.0));
-        colors.push_back(glm::vec4(0.15,0.0,0.15,1.0));
+        // colors.push_back(glm::vec4(0.15,0.0,0.15,1.0));
+        // colors.push_back(glm::vec4(0.15,0.0,0.15,1.0));
+        // colors.push_back(glm::vec4(0.15,0.0,0.15,1.0));
         points.push_back(radius*glm::normalize(x.points[0]) + glm::vec3(xoffset,yoffset,-zoffset));
         points.push_back(radius*glm::normalize(x.points[1]) + glm::vec3(xoffset,yoffset,-zoffset));
         points.push_back(radius*glm::normalize(x.points[2]) + glm::vec3(xoffset,yoffset,-zoffset));
@@ -630,18 +630,18 @@ void Sub::generate_points()
     {
       if(midp.z > 0)
       {
-        colors.push_back(glm::vec4(0.1,0.6,0.1,1.0));
-        colors.push_back(glm::vec4(0.1,0.6,0.1,1.0));
-        colors.push_back(glm::vec4(0.1,0.6,0.1,1.0));
+        // colors.push_back(glm::vec4(0.1,0.6,0.1,1.0));
+        // colors.push_back(glm::vec4(0.1,0.6,0.1,1.0));
+        // colors.push_back(glm::vec4(0.1,0.6,0.1,1.0));
         points.push_back(radius*glm::normalize(x.points[0]) + glm::vec3(xoffset,-yoffset,zoffset));
         points.push_back(radius*glm::normalize(x.points[1]) + glm::vec3(xoffset,-yoffset,zoffset));
         points.push_back(radius*glm::normalize(x.points[2]) + glm::vec3(xoffset,-yoffset,zoffset));
       }
       else
       {
-        colors.push_back(glm::vec4(0.03,0.18,0.03,1.0));
-        colors.push_back(glm::vec4(0.03,0.18,0.03,1.0));
-        colors.push_back(glm::vec4(0.03,0.18,0.03,1.0));
+        // colors.push_back(glm::vec4(0.03,0.18,0.03,1.0));
+        // colors.push_back(glm::vec4(0.03,0.18,0.03,1.0));
+        // colors.push_back(glm::vec4(0.03,0.18,0.03,1.0));
         points.push_back(radius*glm::normalize(x.points[0]) + glm::vec3(xoffset,-yoffset,-zoffset));
         points.push_back(radius*glm::normalize(x.points[1]) + glm::vec3(xoffset,-yoffset,-zoffset));
         points.push_back(radius*glm::normalize(x.points[2]) + glm::vec3(xoffset,-yoffset,-zoffset));
@@ -651,18 +651,18 @@ void Sub::generate_points()
     {
       if(midp.z > 0)
       {
-        colors.push_back(glm::vec4(0.1,0.1,0.3,1.0));
-        colors.push_back(glm::vec4(0.1,0.1,0.3,1.0));
-        colors.push_back(glm::vec4(0.1,0.1,0.3,1.0));
+        // colors.push_back(glm::vec4(0.1,0.1,0.3,1.0));
+        // colors.push_back(glm::vec4(0.1,0.1,0.3,1.0));
+        // colors.push_back(glm::vec4(0.1,0.1,0.3,1.0));
         points.push_back(radius*glm::normalize(x.points[0]) + glm::vec3(-xoffset,yoffset,zoffset));
         points.push_back(radius*glm::normalize(x.points[1]) + glm::vec3(-xoffset,yoffset,zoffset));
         points.push_back(radius*glm::normalize(x.points[2]) + glm::vec3(-xoffset,yoffset,zoffset));
       }
       else
       {
-        colors.push_back(glm::vec4(0.03,0.03,0.09,1.0));
-        colors.push_back(glm::vec4(0.03,0.03,0.09,1.0));
-        colors.push_back(glm::vec4(0.03,0.03,0.09,1.0));
+        // colors.push_back(glm::vec4(0.03,0.03,0.09,1.0));
+        // colors.push_back(glm::vec4(0.03,0.03,0.09,1.0));
+        // colors.push_back(glm::vec4(0.03,0.03,0.09,1.0));
         points.push_back(radius*glm::normalize(x.points[0]) + glm::vec3(-xoffset,yoffset,-zoffset));
         points.push_back(radius*glm::normalize(x.points[1]) + glm::vec3(-xoffset,yoffset,-zoffset));
         points.push_back(radius*glm::normalize(x.points[2]) + glm::vec3(-xoffset,yoffset,-zoffset));
@@ -672,18 +672,18 @@ void Sub::generate_points()
     {
       if(midp.z > 0)
       {
-        colors.push_back(glm::vec4(0.5,0.1,0.0,1.0));
-        colors.push_back(glm::vec4(0.5,0.1,0.0,1.0));
-        colors.push_back(glm::vec4(0.5,0.1,0.0,1.0));
+        // colors.push_back(glm::vec4(0.5,0.1,0.0,1.0));
+        // colors.push_back(glm::vec4(0.5,0.1,0.0,1.0));
+        // colors.push_back(glm::vec4(0.5,0.1,0.0,1.0));
         points.push_back(radius*glm::normalize(x.points[0]) + glm::vec3(-xoffset,-yoffset,zoffset));
         points.push_back(radius*glm::normalize(x.points[1]) + glm::vec3(-xoffset,-yoffset,zoffset));
         points.push_back(radius*glm::normalize(x.points[2]) + glm::vec3(-xoffset,-yoffset,zoffset));
       }
       else
       {
-        colors.push_back(glm::vec4(0.15,0.03,0.0,1.0));
-        colors.push_back(glm::vec4(0.15,0.03,0.0,1.0));
-        colors.push_back(glm::vec4(0.15,0.03,0.0,1.0));
+        // colors.push_back(glm::vec4(0.15,0.03,0.0,1.0));
+        // colors.push_back(glm::vec4(0.15,0.03,0.0,1.0));
+        // colors.push_back(glm::vec4(0.15,0.03,0.0,1.0));
         points.push_back(radius*glm::normalize(x.points[0]) + glm::vec3(-xoffset,-yoffset,-zoffset));
         points.push_back(radius*glm::normalize(x.points[1]) + glm::vec3(-xoffset,-yoffset,-zoffset));
         points.push_back(radius*glm::normalize(x.points[2]) + glm::vec3(-xoffset,-yoffset,-zoffset));
@@ -691,9 +691,9 @@ void Sub::generate_points()
     }
     else
     {
-      points.push_back(radius*glm::normalize(x.points[0]));
-      points.push_back(radius*glm::normalize(x.points[1]));
-      points.push_back(radius*glm::normalize(x.points[2]));
+      // points.push_back(radius*glm::normalize(x.points[0]));
+      // points.push_back(radius*glm::normalize(x.points[1]));
+      // points.push_back(radius*glm::normalize(x.points[2]));
       colors.push_back(x.colors[0]);
       colors.push_back(x.colors[1]);
       colors.push_back(x.colors[2]);
@@ -1460,7 +1460,6 @@ void Sub::generate_points()
 
 
 
-
   room_num[7] = points.size() - room_start[7];
 
   //******************************************************************************
@@ -1483,7 +1482,7 @@ void Sub::generate_points()
   //   normals.push_back(glm::vec3(0,1,0));
 
 
-
+// #HEADING
 
 
 
@@ -1593,6 +1592,19 @@ void Sub::generate_points()
 
   cout << "the rooms collectively have " << points.size() - room_start[0] << " verticies" << endl;
 
+
+  //THIS IS GOING TO CHANGE - HOWEVER, FOR TIME'S SAKE, THIS IS GOING TO BE FUNCTIONING AS A SCENE CLASS
+//THE SCENE CLASS INSTANTIATES ALL THE OBJECTS WHICH HOLD GEOMETRY - WE'RE INHERENTLY SORT OF SINGLE THREADED HERE, BECAUSE OF THE
+//NATURE OF OPENGL, SO A TREE STRUCTURE MAKES A LOT OF SENSE - SOME KIND OF TRAVERSAL TO PLACE ALL THE THINGS IN THE WORLD
+
+
+
+
+
+  sub_engine.init(points, normals, colors); //I think this might be a good pattern, to pass the vectors by reference, keep one vertex array
+
+
+
 }
 
 // //******************************************************************************
@@ -1648,7 +1660,7 @@ void Sub::subd_square(glm::vec3 a, glm::vec2 at, glm::vec3 b, glm::vec2 bt, glm:
     temp2.texcoords[2] = dt;
 
 
-    //this scheme uses one point at the center - it was for the spaceship but might be useful.
+    //this scheme uses one point at the center - it was for the spaceship but might be useful elsewhere.
     // glm::vec2 tc = (at + bt + ct + dt)/4.0f;
     //
     // temp1.texcoords[0] = tc;
@@ -1718,6 +1730,9 @@ void Sub::display()
   //draw_decor_func();
 
   //draw_engine_func();
+
+
+
 
   //draw_accoutremont_func();
     //the doors will have windows, which might require alpha

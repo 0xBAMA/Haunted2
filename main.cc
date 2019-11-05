@@ -13,7 +13,7 @@
 //  Date: 10 October 2019
 //******************************************************************************
 
-#include "resources/sub.h"
+#include "resources/sub.hpp"
 #include <stdio.h>
 
 
@@ -49,9 +49,9 @@ void init()
   submodel = new Sub();
   cout << " done." << endl;
 
-  submodel->set_view(view);
+  submodel->set_view(JonDefault::view);
 
-  submodel->set_proj(proj);
+  submodel->set_proj(JonDefault::proj);
 
   submodel->set_scale(scale);
 
@@ -66,7 +66,7 @@ void init()
 
 }
 
-//----------------------------------------------------------------------------
+//---------------------------------------------------------------------------
 
 void display()
 {

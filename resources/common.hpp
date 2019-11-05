@@ -10,7 +10,7 @@ using std::endl;
 
 #include "engine.h"   //engine class
 #include "accoutrement.h"    //accoutrement class
-// #include ""
+// #include """
 
 
 #define POINT_SPRITE_PATH "resources/textures/height/sphere_small.png"
@@ -19,7 +19,7 @@ using std::endl;
 #define WATER_NORMAL_TEXTURE "resources/textures/normal/water_normal.png"
 #define WATER_COLOR_TEXTURE "resources/textures/water_color.png"
 
-//**********************************************
+//************************************************
 
 // GLEW
 #define GLEW_STATIC
@@ -29,6 +29,7 @@ using std::endl;
 // GLUT
 #include <GL/freeglut.h>
 #include <GL/freeglut_ext.h>
+
 
 
 // Shader Compilation
@@ -57,14 +58,20 @@ using std::endl;
 
 
 
-glm::mat4 view = glm::lookAt(
-    glm::vec3(-1.3f, 0.45f, -1.7f),
-    glm::vec3(0.0f, 0.0f, 0.0f),
-    glm::vec3(0.0f, 1.0f, 0.0f)
-);
 
-glm::mat4 proj = glm::perspective(glm::radians(65.0f), 1366.0f / 768.0f, 0.25f, 4.0f);
 
+namespace JonDefault{
+
+
+    glm::mat4 view = glm::lookAt(
+        glm::vec3(-1.3f, 0.45f, -1.7f),
+        glm::vec3(0.0f, 0.0f, 0.0f),
+        glm::vec3(0.0f, 1.0f, 0.0f)
+    );
+
+    glm::mat4 proj = glm::perspective(glm::radians(65.0f), 1366.0f / 768.0f, 0.25f, 4.0f);
+
+}
 
 //******************************************************************************
 //  Function: planetest
