@@ -17,6 +17,12 @@ uniform float scale;
 uniform int t;
 uniform int type;
 
+
+  uniform mat4 transl8;
+  uniform mat4 rot8;
+
+
+
 uniform sampler2D height_tex;
 
 
@@ -108,7 +114,27 @@ void main()
 
 
 
+
+  if(type == 2)
+  {
+
+    vPosition_local = transl8*rot8*vec4(scale*vPosition, 1.0);
+    vPosition_local = apply_roll*(apply_pitch*(apply_yaw*vPosition_local));
+
+  }
+
+
+
+  // vec4 newbasisx = apply_roll*(apply_pitch*(apply_yaw*vec4(1,0,0,1)));
+  // vec4 newbasisy = apply_roll*(apply_pitch*(apply_yaw*vec4(0,1,0,1)));
+  // vec4 newbasisz = apply_roll*(apply_pitch*(apply_yaw*vec4(0,0,1,1)));
+
+
+
   vpos = vPosition_local.xyz;
+
+
+
 
 
 

@@ -110,7 +110,7 @@ namespace JonDefault{
     float tallroom2end = 0.414f;
 
 
-    
+
 
     float floor1yoffset = 0.072f;
     float floor2yoffset = -0.062f;

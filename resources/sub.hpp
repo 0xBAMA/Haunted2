@@ -76,7 +76,7 @@ public:
   void set_proj(glm::mat4 proj);
   void set_view(glm::mat4 view);
   void set_scale(float scale);
-  void set_time(int tin)          {t = tin; glUniform1i(t_loc,t);}
+  void set_time(int tin)          {t = tin; glUniform1i(t_loc,t); sub_engine.set_theta(tin/50.0f);}
 
   void toggle_hull()              {draw_hull = !draw_hull;}
   void toggle_room(int n)         {draw_room[n] = !draw_room[n];}
@@ -189,6 +189,8 @@ Sub::Sub()
 
     //fill those vectors with geometry
     generate_points();
+
+
 
 
 
@@ -318,7 +320,6 @@ Sub::Sub()
 
 
 
-    sub_engine.init(points,normals,colors);
 
 
 
@@ -1796,7 +1797,10 @@ void Sub::generate_points()
 
 
 
-  sub_engine.init(points, normals, colors); //I think this might be a good pattern, to pass the vectors by reference, keep one vertex array
+  // sub_engine.init(points, normals, colors); //I think this might be a good pattern, to pass the vectors by reference, keep one vertex array
+
+  sub_engine.init(points,normals,colors);
+
 
 
 
