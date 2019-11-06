@@ -9,6 +9,9 @@
 //******************************************************************************
 
 #include "common.hpp"
+#include "accoutrement.hpp"
+#include "engine.hpp"
+
 
 //******************************************************************************
 //  Class: Sub
@@ -304,6 +307,9 @@ Sub::Sub()
     // load_textures();
 
 
+    glUniform1i(glGetUniformLocation(sub_shader, "type"), 0);
+
+
 
 
 
@@ -574,10 +580,10 @@ void Sub::generate_points()
 
 
 //OFFICIAL SUBMARINE DIMENSIONS
-  xoffset = 0.05f;
-  yoffset = 0.08f;
-  zoffset = 0.55f;
-  radius  = 0.17f;
+  xoffset = JonDefault::xoffset;
+  yoffset = JonDefault::yoffset;
+  zoffset = JonDefault::zoffset;
+  radius  = JonDefault::radius;
 
   bool panels = true;
 
@@ -785,13 +791,13 @@ void Sub::generate_points()
     for(int i = 0; i < 6; i++)
       normals.push_back(norm);
 
-    colors.push_back(glm::vec4(0,0,0,0));
-    colors.push_back(glm::vec4(0,0,0,0));
-    colors.push_back(glm::vec4(0,0,0,0));
+    colors.push_back(glm::vec4(0,0,0,1));
+    colors.push_back(glm::vec4(0,0,0,1));
+    colors.push_back(glm::vec4(0,0,0,1));
 
-    colors.push_back(glm::vec4(0,0,0,0));
-    colors.push_back(glm::vec4(0,0,0,0));
-    colors.push_back(glm::vec4(0,0,0,0));
+    colors.push_back(glm::vec4(0,0,0,1));
+    colors.push_back(glm::vec4(0,0,0,1));
+    colors.push_back(glm::vec4(0,0,0,1));
 
     // texcoords.push_back();   //not really defined
   }
@@ -863,13 +869,13 @@ void Sub::generate_points()
     for(int i = 0; i < 6; i++)
       normals.push_back(norm);
 
-    colors.push_back(glm::vec4(0,0,0,0));
-    colors.push_back(glm::vec4(0,0,0,0));
-    colors.push_back(glm::vec4(0,0,0,0));
+    colors.push_back(glm::vec4(0,0,0,1));
+    colors.push_back(glm::vec4(0,0,0,1));
+    colors.push_back(glm::vec4(0,0,0,1));
 
-    colors.push_back(glm::vec4(0,0,0,0));
-    colors.push_back(glm::vec4(0,0,0,0));
-    colors.push_back(glm::vec4(0,0,0,0));
+    colors.push_back(glm::vec4(0,0,0,1));
+    colors.push_back(glm::vec4(0,0,0,1));
+    colors.push_back(glm::vec4(0,0,0,1));
 
     // texcoords.push_back();   //not really defined
   }
@@ -948,13 +954,13 @@ void Sub::generate_points()
     for(int i = 0; i < 6; i++)
       normals.push_back(norm);
 
-    colors.push_back(glm::vec4(0,0,0,0));
-    colors.push_back(glm::vec4(0,0,0,0));
-    colors.push_back(glm::vec4(0,0,0,0));
+    colors.push_back(glm::vec4(0,0,0,1));
+    colors.push_back(glm::vec4(0,0,0,1));
+    colors.push_back(glm::vec4(0,0,0,1));
 
-    colors.push_back(glm::vec4(0,0,0,0));
-    colors.push_back(glm::vec4(0,0,0,0));
-    colors.push_back(glm::vec4(0,0,0,0));
+    colors.push_back(glm::vec4(0,0,0,1));
+    colors.push_back(glm::vec4(0,0,0,1));
+    colors.push_back(glm::vec4(0,0,0,1));
 
     // texcoords.push_back();   //not really defined
   }
@@ -977,7 +983,7 @@ void Sub::generate_points()
       normals.push_back(glm::vec3(1.0,0,0));
 
     for(int i = 0; i < 6; i++)
-      colors.push_back(glm::vec4(0,0,0,0));
+      colors.push_back(glm::vec4(0,0,0,1));
 
     //-x
     points.push_back(glm::vec3(-1.0f*(radius+xoffset),yoffset,zoffset));
@@ -992,7 +998,7 @@ void Sub::generate_points()
       normals.push_back(glm::vec3(-1.0,0,0));
 
     for(int i = 0; i < 6; i++)
-      colors.push_back(glm::vec4(0,0,0,0));
+      colors.push_back(glm::vec4(0,0,0,1));
 
 
     //+y
@@ -1008,7 +1014,7 @@ void Sub::generate_points()
       normals.push_back(glm::vec3(0,1.0,0));
 
     for(int i = 0; i < 6; i++)
-      colors.push_back(glm::vec4(0,0,0,0));
+      colors.push_back(glm::vec4(0,0,0,1));
 
 
     //-y
@@ -1024,7 +1030,7 @@ void Sub::generate_points()
       normals.push_back(glm::vec3(0,-1.0,0));
 
     for(int i = 0; i < 6; i++)
-      colors.push_back(glm::vec4(0,0,0,0));
+      colors.push_back(glm::vec4(0,0,0,1));
 
 
     //+z
@@ -1040,7 +1046,7 @@ void Sub::generate_points()
       normals.push_back(glm::vec3(0,0,1.0));
 
     for(int i = 0; i < 6; i++)
-      colors.push_back(glm::vec4(0,0,0,0));
+      colors.push_back(glm::vec4(0,0,0,1));
 
 
     //-z
@@ -1056,7 +1062,7 @@ void Sub::generate_points()
       normals.push_back(glm::vec3(0,0,-1.0));
 
     for(int i = 0; i < 6; i++)
-      colors.push_back(glm::vec4(0,0,0,0));
+      colors.push_back(glm::vec4(0,0,0,1));
 
   }
 
@@ -1109,31 +1115,27 @@ void Sub::generate_points()
   float room2start, room2end;
   float room3start, room3end;
 
-  room1start = -0.558f;
-  room1end = -0.29f;
-
-  room2start = -0.27f;
-  room2end = 0.064f;
-
-  room3start = 0.082f;
-  room3end = 0.624f;
-
-  float floor1yoffset = 0.072f;
-
-
-
-
   float tallroom1start, tallroom1end;
   float tallroom2start, tallroom2end;
 
-  tallroom1start = -0.596f;
-  tallroom1end = -0.154f;
+  room1start =  JonDefault::room1start;
+  room1end =  JonDefault::room1end;
 
-  tallroom2start = -0.132f;
-  tallroom2end = 0.414f;
+  room2start =  JonDefault::room2start;
+  room2end = JonDefault::room2end;
 
-  float floor2yoffset = -0.062f;
-  float floor3yoffset = -0.196f;
+  room3start = JonDefault::room3start;
+  room3end = JonDefault::room3end;
+
+  tallroom1start =  JonDefault::tallroom1start;
+  tallroom1end =  JonDefault::tallroom1end;
+
+  tallroom2start =  JonDefault::tallroom2start;
+  tallroom2end = JonDefault::tallroom2end;
+
+  float floor1yoffset = JonDefault::floor1yoffset;
+  float floor2yoffset = JonDefault::floor2yoffset;
+  float floor3yoffset = JonDefault::floor3yoffset;
 
 
 
@@ -1153,7 +1155,10 @@ void Sub::generate_points()
     points.push_back(glm::vec3(radius*cos(i+inc), radius*0.75*sin(i+inc) + floor1yoffset, room1end));
 
     for(int j = 0; j < 6; j++)
+    {
       normals.push_back(glm::vec3(-cos(i),-sin(i),0));
+      colors.push_back(glm::vec4(1,0,0,1));
+    }
 
   }
 
@@ -1166,8 +1171,38 @@ void Sub::generate_points()
   points.push_back(glm::vec3(-radius, floor1yoffset, room1end));
   points.push_back(glm::vec3(radius, floor1yoffset, room1end));
 
-  for(int j = 0; j < 6; j++)
+
+
+
+//walkway
+  points.push_back(glm::vec3(0.2f*radius, floor1yoffset, room1end));
+  points.push_back(glm::vec3(-0.2f*radius, floor1yoffset, room1end));
+  points.push_back(glm::vec3(0.2f*radius, floor1yoffset, room2start));
+
+  points.push_back(glm::vec3(-0.2f*radius, floor1yoffset, room1end));
+  points.push_back(glm::vec3(-0.2f*radius, floor1yoffset, room2start));
+  points.push_back(glm::vec3(0.2f*radius, floor1yoffset, room2start));
+
+
+
+
+//walkway
+  points.push_back(glm::vec3(0.2f*radius, floor1yoffset, room2end));
+  points.push_back(glm::vec3(-0.2f*radius, floor1yoffset, room2end));
+  points.push_back(glm::vec3(0.2f*radius, floor1yoffset, room3start));
+
+  points.push_back(glm::vec3(-0.2f*radius, floor1yoffset, room2end));
+  points.push_back(glm::vec3(-0.2f*radius, floor1yoffset, room3start));
+  points.push_back(glm::vec3(0.2f*radius, floor1yoffset, room3start));
+
+
+
+
+  for(int j = 0; j < 18; j++)
+  {
     normals.push_back(glm::vec3(0,1,0));
+    colors.push_back(glm::vec4(1,0,0,1));
+  }
 
 
   //then the end caps
@@ -1192,7 +1227,10 @@ void Sub::generate_points()
     points.push_back(glm::vec3(radius*cos(i+inc), radius*0.75*sin(i+inc) + floor1yoffset, room2end));
 
     for(int j = 0; j < 6; j++)
+    {
       normals.push_back(glm::vec3(-cos(i),-sin(i),0));
+      colors.push_back(glm::vec4(1,0,0,1));
+    }
   }
 
   //then the bottom, just a plane
@@ -1205,7 +1243,10 @@ void Sub::generate_points()
   points.push_back(glm::vec3(radius, floor1yoffset, room2end));
 
   for(int j = 0; j < 6; j++)
+  {
     normals.push_back(glm::vec3(0,1,0));
+    colors.push_back(glm::vec4(1,0,0,1));
+  }
 
   //then the end caps
 
@@ -1229,7 +1270,10 @@ void Sub::generate_points()
     points.push_back(glm::vec3(radius*cos(i+inc), radius*0.75*sin(i+inc) + floor1yoffset, room3end));
 
     for(int j = 0; j < 6; j++)
+    {
       normals.push_back(glm::vec3(-cos(i),-sin(i),0));
+      colors.push_back(glm::vec4(1,0,0,1));
+    }
   }
 
   //then the bottom, just a plane
@@ -1242,7 +1286,10 @@ void Sub::generate_points()
   points.push_back(glm::vec3(radius, floor1yoffset, room3end));
 
   for(int j = 0; j < 6; j++)
+  {
     normals.push_back(glm::vec3(0,1,0));
+    colors.push_back(glm::vec4(1,0,0,1));
+  }
 
   //then the end caps
 
@@ -1285,7 +1332,10 @@ void Sub::generate_points()
   points.push_back(glm::vec3(0.3f*radius, floor2yoffset, tallroom2end));
 
   for(int j = 0; j < 6; j++)
-  normals.push_back(glm::vec3(0,1,0));
+  {
+    normals.push_back(glm::vec3(0,1,0));
+    colors.push_back(glm::vec4(1,0,0,1));
+  }
 
 
   room_num[4] = points.size() - room_start[4];
@@ -1307,7 +1357,10 @@ void Sub::generate_points()
   points.push_back(glm::vec3(0.75f*radius, floor2yoffset, tallroom1end));
 
   for(int j = 0; j < 6; j++)
+  {
     normals.push_back(glm::vec3(0,1,0));
+    colors.push_back(glm::vec4(1,0,0,1));
+  }
 
   room_num[5] = points.size() - room_start[5];
 
@@ -1363,6 +1416,8 @@ void Sub::generate_points()
   for(int i = 0; i < 6; i++)
   {
     normals.push_back(glm::vec3(0,-1,0));
+    colors.push_back(glm::vec4(1,0,0,1));
+
   }
 
 
@@ -1384,6 +1439,8 @@ void Sub::generate_points()
   for(int i = 0; i < 6; i++)
   {
     normals.push_back(glm::vec3(-1,0,0));
+    colors.push_back(glm::vec4(1,0,0,1));
+
   }
 
 
@@ -1400,7 +1457,10 @@ void Sub::generate_points()
     points.push_back(glm::vec3(radius*0.25*cos(i+inc) + 0.75*radius, radius*0.25*sin(i+inc) + floor3yoffset+0.25*radius, tallroom1end));
 
     for(int j = 0; j < 6; j++)
+    {
       normals.push_back(glm::vec3(-cos(i),-sin(i),0));
+      colors.push_back(glm::vec4(1,0,0,1));
+    }
 
     temp = i;
   }
@@ -1419,7 +1479,10 @@ void Sub::generate_points()
 
 
   for(int j = 0; j < 6; j++)
+  {
     normals.push_back(glm::vec3(-cos(temp),-sin(temp),0));
+    colors.push_back(glm::vec4(1,0,0,1));
+  }
 
 
 
@@ -1434,7 +1497,10 @@ void Sub::generate_points()
     points.push_back(glm::vec3(radius*0.25*cos(i+inc) - 0.75*radius, radius*0.25*sin(i+inc) + floor3yoffset+0.25*radius, tallroom1end));
 
     for(int j = 0; j < 6; j++)
+    {
       normals.push_back(glm::vec3(-cos(i),-sin(i),0));
+      colors.push_back(glm::vec4(1,0,0,1));
+    }
 
   }
 
@@ -1451,6 +1517,7 @@ void Sub::generate_points()
   for(int i = 0; i < 6; i++)
   {
     normals.push_back(glm::vec3(1,0,0));
+    colors.push_back(glm::vec4(1,0,0,1));
   }
 
 
@@ -1499,6 +1566,7 @@ void Sub::generate_points()
   for(int i = 0; i < 6; i++)
   {
     normals.push_back(glm::vec3(0,-1,0));
+    colors.push_back(glm::vec4(1,0,0,1));
   }
 
 
@@ -1517,6 +1585,7 @@ void Sub::generate_points()
   for(int i = 0; i < 6; i++)
   {
     normals.push_back(glm::vec3(-1,0,0));
+    colors.push_back(glm::vec4(1,0,0,1));
   }
 
 
@@ -1532,7 +1601,10 @@ void Sub::generate_points()
     points.push_back(glm::vec3(radius*0.25*cos(i+inc) + 0.75*radius, radius*0.25*sin(i+inc) + floor3yoffset+0.25*radius, tallroom2end));
 
     for(int j = 0; j < 6; j++)
+    {
       normals.push_back(glm::vec3(-cos(i),-sin(i),0));
+      colors.push_back(glm::vec4(1,0,0,1));
+    }
 
     temp = i;
   }
@@ -1551,7 +1623,10 @@ void Sub::generate_points()
 
 
   for(int j = 0; j < 6; j++)
+  {
     normals.push_back(glm::vec3(-cos(temp),-sin(temp),0));
+    colors.push_back(glm::vec4(1,0,0,1));
+  }
 
 
 
@@ -1566,7 +1641,10 @@ void Sub::generate_points()
     points.push_back(glm::vec3(radius*0.25*cos(i+inc) - 0.75*radius, radius*0.25*sin(i+inc) + floor3yoffset+0.25*radius, tallroom2end));
 
     for(int j = 0; j < 6; j++)
+    {
       normals.push_back(glm::vec3(-cos(i),-sin(i),0));
+      colors.push_back(glm::vec4(1,0,0,1));
+    }
 
   }
 
@@ -1583,6 +1661,7 @@ void Sub::generate_points()
   for(int i = 0; i < 6; i++)
   {
     normals.push_back(glm::vec3(1,0,0));
+    colors.push_back(glm::vec4(1,0,0,1));
   }
 
 
@@ -1723,8 +1802,17 @@ void Sub::display()
   light_position = original_light_position + glm::vec3(2*cos(0.005*t),-2,2*sin(0.01*t));
   glUniform3fv(light_position_loc, 1, glm::value_ptr(light_position));
 
+
+
+
+  GLint id;
+  glGetIntegerv(GL_CURRENT_PROGRAM,&id);
+
+
+  glUniform1i(glGetUniformLocation(id, "type"), 0);
   draw_hull_func();
 
+  glUniform1i(glGetUniformLocation(id, "type"), 1);
   draw_rooms_func();
 
   //draw_decor_func();

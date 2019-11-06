@@ -15,6 +15,7 @@ uniform mat4 proj;
 uniform mat4 view;
 uniform float scale;
 uniform int t;
+uniform int type;
 
 uniform sampler2D height_tex;
 
@@ -47,15 +48,22 @@ void main()
 
 
 
-
-  // color = vColor;
-  if(vPosition.y > -0.11)
+  if(type == 0) //ship hull
   {
-    color = vec4(0.1, 0.1, 0.1, 1.0);
+    if(vPosition.y > -0.11)
+    {
+      color = vec4(0.1, 0.1, 0.1, 1.0);
+    }
+    else
+    {
+      color = vec4(0.386, 0.1, 0.0, 1.0);
+    }
   }
   else
   {
-    color = vec4(0.386, 0.1, 0.0, 1.0);
+    // color = vColor;
+    // color = noise4();
+    color = vec4(0.268,0.268,0.168,1.0);
   }
 
 

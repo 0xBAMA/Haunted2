@@ -1,4 +1,7 @@
 
+#ifndef COMMON_H
+#define COMMON_H
+
 #include <vector>
 #include <iostream>
 using std::cout;
@@ -8,8 +11,8 @@ using std::endl;
 
 
 
-#include "engine.h"   //engine class
-#include "accoutrement.h"    //accoutrement class
+// #include "engine.hpp"   //engine class
+// #include "accoutrement.h"    //accoutrement class
 // #include """
 
 
@@ -47,7 +50,7 @@ using std::endl;
 //**********************************************
 
 // #define GLM_MESSAGES
-#define GLM_SWIZZLE
+// #define GLM_SWIZZLE
 #define GLM_FORCE_SWIZZLE
 #define GLM_SWIZZLE_XYZW
 #include "glm/glm.hpp" //general vector types
@@ -64,12 +67,60 @@ namespace JonDefault{
 
 
     glm::mat4 view = glm::lookAt(
-        glm::vec3(-1.3f, 0.45f, -1.7f),
+        glm::vec3(-1.3f, 0.7f, -1.7f),
         glm::vec3(0.0f, 0.0f, 0.0f),
         glm::vec3(0.0f, 1.0f, 0.0f)
     );
 
     glm::mat4 proj = glm::perspective(glm::radians(65.0f), 1366.0f / 768.0f, 0.25f, 4.0f);
+
+    glm::vec3 player_position = glm::vec3(0,0.1,0);
+    glm::vec3 player_forward = glm::vec3(0,0,1);   //+z
+    glm::vec3 player_left = glm::vec3(1,0,0);     //+x
+    glm::vec3 player_up = glm::vec3(0,1,0);      //+y
+
+    typedef enum state_t
+    {//control of the player's position
+      floor1=1,
+      floor2=2,
+      floor3=3,
+      onetotwo=4,
+      twotothree=5,
+      threetotwo=6,
+      twotoone=7
+    } state;
+
+
+    float room1start = -0.558f;
+    float room1end = -0.29f;
+
+    float room2start = -0.27f;
+    float room2end = 0.064f;
+
+    float room3start = 0.082f;
+    float room3end = 0.624f;
+
+
+
+
+    float tallroom1start = -0.596f;
+    float tallroom1end = -0.154f;
+
+    float tallroom2start = -0.132f;
+    float tallroom2end = 0.414f;
+
+
+    
+
+    float floor1yoffset = 0.072f;
+    float floor2yoffset = -0.062f;
+    float floor3yoffset = -0.196f;
+
+    float xoffset = 0.05f;
+    float yoffset = 0.08f;
+    float zoffset = 0.55f;
+    float radius  = 0.17f;
+
 
 }
 
@@ -133,3 +184,6 @@ float capsdf(glm::vec3 p, glm::vec3 a, glm::vec3 b, float r)
 
   return glm::length(p-c) - r;
 }
+
+
+#endif

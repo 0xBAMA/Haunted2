@@ -25,6 +25,22 @@ int t = 0;
 
 
 
+//stuff to handle the player's movement
+bool outside = true;  //if you're outside, show the hull like we've been looking at, if false, you're inside
+
+JonDefault::state player_current_state = JonDefault::floor1; //need to know the y offsets for that, move them from sub.hpp to common.hpp
+
+glm::vec3 player_position = JonDefault::player_position;
+glm::vec3 player_forward = JonDefault::player_forward;   //+z
+glm::vec3 player_left = JonDefault::player_left;     //+x
+glm::vec3 player_up = JonDefault::player_up;      //+y
+
+bool is_ok(glm::vec3 point);
+
+
+
+
+
 //DEBUG STUFF
 
 void GLAPIENTRY
@@ -113,24 +129,59 @@ void keyboard(unsigned char key, int x, int y)
     //these should be dropped in the interior view
 
     case 'q':   //YAW CONTROLS
-      submodel->adjust_yaw_rate(0.1);
+      if(outside)
+        submodel->adjust_yaw_rate(0.1);
       break;
     case 'w':
-      submodel->adjust_yaw_rate(-0.1);
+      if(outside)
+        submodel->adjust_yaw_rate(-0.1);
+      else
+      {//you're inside, so this is forward
+
+      }
+
       break;
+
 
     case 'a':   //PITCH CONTROLS
-      submodel->adjust_pitch_rate(0.1);
-      break;
-    case 's':
-      submodel->adjust_pitch_rate(-0.1);
+      if(outside)
+        submodel->adjust_pitch_rate(0.1);
+      else
+      {//you're inside, this is left
+
+      }
       break;
 
+
+    case 's':
+      if(outside)
+        submodel->adjust_pitch_rate(-0.1);
+      else
+      {//you're inside, this is 'back'
+
+      }
+      break;
+
+
+
+
+
+    case 'd':
+      if(!outside)
+      {//no collision here, it's just right
+
+      }
+      break;
+
+
+
     case 'z':   //ROLL CONTROLS
-      submodel->adjust_roll_rate(0.1);
+      if(outside)
+        submodel->adjust_roll_rate(0.1);
       break;
     case 'x':
-      submodel->adjust_roll_rate(-0.1);
+      if(outside)
+        submodel->adjust_roll_rate(-0.1);
       break;
 
 
@@ -146,6 +197,21 @@ void keyboard(unsigned char key, int x, int y)
       break;
 
 
+
+
+
+    case 'p':
+      //change perspective
+      outside = !outside;
+
+      if(outside)
+      {//you're outside
+
+      }
+      else
+      {//you're inside
+
+      }
 
 
 
@@ -223,6 +289,90 @@ void idle( void )
 
 
 //----------------------------------------------------------------------------
+//is this an ok move?
+bool is_ok(glm::vec3 point)
+{
+  switch(player_current_state)
+  {
+    case JonDefault::floor1:  //check bounds of first floor
+
+    if(point.y != JonDefault::floor1yoffset)
+      return false;
+
+    if(point.z < JonDefault::room1start)
+      return false;
+
+    if(point.z > JonDefault::room3end)
+      return false;
+
+    if(point.x > JonDefault::radius)
+      return false;
+
+    if(point.x < -1.0f*JonDefault::radius)
+      return false;
+
+    if(point.z > JonDefault::room1end && point.z < JonDefault::room2start)
+    {
+      if(point.x < -0.2f*JonDefault::radius || point.x > 0.2f*JonDefault::radius)
+      {
+        return false;
+      }
+    }
+
+    if(point.z > JonDefault::room2end && point.z < JonDefault::room3start)
+    {
+      if(point.x < -0.2f*JonDefault::radius || point.x > 0.2f*JonDefault::radius)
+      {
+        return false;
+      }
+    }
+
+    return true;
+    break;
+
+
+
+
+
+
+
+
+    case JonDefault::floor2:  //check bounds of second floor
+
+    if(point.y != JonDefault::floor2yoffset)
+      return false;
+
+    break;
+
+
+
+
+
+    case JonDefault::floor3:  //check bounds of third floor
+
+    if(point.y != JonDefault::floor3yoffset)
+      return false;
+
+    break;
+
+
+
+
+
+    case JonDefault::onetotwo:
+    case JonDefault::twotothree:
+    case JonDefault::threetotwo:
+    case JonDefault::twotoone:
+      //no movement allowed while changing states
+      return false;
+    break;
+
+  }
+}
+
+
+//----------------------------------------------------------------------------
+
 
 int main(int argc, char **argv)
 {

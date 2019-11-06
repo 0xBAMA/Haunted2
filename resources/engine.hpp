@@ -89,33 +89,27 @@ void engine::init(std::vector<glm::vec3>& points, std::vector<glm::vec3>& normal
 }
 
 
-
-void engine::add_crank(std::vector<glm::vec3>& points, std::vector<glm::vec3>& normals, std::vector<glm::vec3>& colors)
-{//this is just the one unit, to draw it all, it's 4 rotated units
-
-}
-
-
-void add_conrod(std::vector<glm::vec3>& points, std::vector<glm::vec3>& normals, std::vector<glm::vec3>& colors)
-{//again, only need one of these
+void engine::add_crank(std::vector<glm::vec3>& points, std::vector<glm::vec3>& normals, std::vector<glm::vec4>& colors)
+{
 
 }
 
-
-void add_piston(std::vector<glm::vec3>& points, std::vector<glm::vec3>& normals, std::vector<glm::vec3>& colors)
-{//just one
-
-}
-
-
-void add_valves(std::vector<glm::vec3>& points, std::vector<glm::vec3>& normals, std::vector<glm::vec3>& colors)
-{//do 4 per cylinder just have the 2 and 2 for exhaust and intake because they animate separately
+void engine::add_conrod(std::vector<glm::vec3>& points, std::vector<glm::vec3>& normals, std::vector<glm::vec4>& colors)
+{
 
 }
 
+void engine::add_piston(std::vector<glm::vec3>& points, std::vector<glm::vec3>& normals, std::vector<glm::vec4>& colors)
+{
 
+}
 
-void add_cams(std::vector<glm::vec3>& points, std::vector<glm::vec3>& normals, std::vector<glm::vec3>& colors)
-{//one cam, drawn 4 times, rotated
+void engine::add_valves(std::vector<glm::vec3>& points, std::vector<glm::vec3>& normals, std::vector<glm::vec4>& colors)
+{
+
+}
+
+void engine::add_cams(std::vector<glm::vec3>& points, std::vector<glm::vec3>& normals, std::vector<glm::vec4>& colors)
+{
 
 }
