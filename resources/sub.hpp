@@ -57,6 +57,8 @@ public:
 
   void draw_hull_func();
   void draw_rooms_func();
+  void draw_engine_func();
+
 
   // void display_panel(int num);  //display the appropriate side, 1-6 - holdover from SpAce
 
@@ -316,7 +318,7 @@ Sub::Sub()
 
 
 
-
+    sub_engine.init(points,normals,colors);
 
 
 
@@ -1293,18 +1295,75 @@ void Sub::generate_points()
 
   //then the end caps
 
+
+
+// "ladder"
+  points.push_back(glm::vec3(-0.1f*radius, floor1yoffset+0.02, room3end-0.075));
+  points.push_back(glm::vec3(0.1f*radius, floor1yoffset+0.02, room3end-0.075));
+  points.push_back(glm::vec3(0.1f*radius, floor3yoffset, room3end-0.075));
+
+  points.push_back(glm::vec3(-0.1f*radius, floor1yoffset+0.02, room3end-0.075));
+  points.push_back(glm::vec3(0.1f*radius, floor3yoffset, room3end-0.075));
+  points.push_back(glm::vec3(-0.1f*radius, floor3yoffset, room3end-0.075));
+  for(int i = 0; i < 6; i++)
+  {
+    normals.push_back(glm::vec3(0,0,1));
+    colors.push_back(glm::vec4(1,0,0,1));
+  }
+
+
+// "ladder"
+  points.push_back(glm::vec3(-0.1f*radius, floor1yoffset+0.02, room3end-0.074));
+  points.push_back(glm::vec3(0.1f*radius, floor3yoffset, room3end-0.074));
+  points.push_back(glm::vec3(0.1f*radius, floor1yoffset+0.02, room3end-0.074));
+
+  points.push_back(glm::vec3(-0.1f*radius, floor1yoffset+0.02, room3end-0.074));
+  points.push_back(glm::vec3(-0.1f*radius, floor3yoffset, room3end-0.074));
+  points.push_back(glm::vec3(0.1f*radius, floor3yoffset, room3end-0.074));
+  for(int i = 0; i < 6; i++)
+  {
+    normals.push_back(glm::vec3(0,0,-1));
+    colors.push_back(glm::vec4(1,0,0,1));
+  }
+
+
+
+
+
+
+
+
+
   room_num[2] = points.size() - room_start[2];
 
   //******************************************************************************
 
   //ROOM 4
   room_start[3] = points.size();
-  //GENER8
 
-  for(float i = 0.125*twopi; i <= 0.875*twopi; i+= 0.001)
+
+
+  points.push_back(glm::vec3(-0.6f*radius, floor2yoffset, room3end));
+  points.push_back(glm::vec3(0.6f*radius, floor2yoffset, room3end));
+  points.push_back(glm::vec3(0.6f*radius, floor2yoffset, tallroom2end+0.07f));
+
+  points.push_back(glm::vec3(-0.6f*radius, floor2yoffset, room3end));
+  points.push_back(glm::vec3(0.6f*radius, floor2yoffset, tallroom2end+0.07f));
+  points.push_back(glm::vec3(-0.6f*radius, floor2yoffset, tallroom2end+0.07f));
+  for(int i = 0; i < 6; i++)
   {
-
+    normals.push_back(glm::vec3(0,1,0));
+    colors.push_back(glm::vec4(1,0,0,1));
   }
+
+
+
+
+
+
+
+
+
 
 
   room_num[3] = points.size() - room_start[3];
@@ -1323,13 +1382,13 @@ void Sub::generate_points()
   //GENER8
 
 
-  points.push_back(glm::vec3(0.3f*radius, floor2yoffset, tallroom2start));
-  points.push_back(glm::vec3(-0.3f*radius, floor2yoffset, tallroom2start));
-  points.push_back(glm::vec3(0.3f*radius, floor2yoffset, tallroom2end));
+  points.push_back(glm::vec3(0.3f*radius, floor2yoffset, tallroom1end));
+  points.push_back(glm::vec3(-0.3f*radius, floor2yoffset, tallroom1end));
+  points.push_back(glm::vec3(0.3f*radius, floor2yoffset, tallroom2end+0.07f));
 
-  points.push_back(glm::vec3(-0.3f*radius, floor2yoffset, tallroom2start));
-  points.push_back(glm::vec3(-0.3f*radius, floor2yoffset, tallroom2end));
-  points.push_back(glm::vec3(0.3f*radius, floor2yoffset, tallroom2end));
+  points.push_back(glm::vec3(-0.3f*radius, floor2yoffset, tallroom1end));
+  points.push_back(glm::vec3(-0.3f*radius, floor2yoffset, tallroom2end+0.07f));
+  points.push_back(glm::vec3(0.3f*radius, floor2yoffset, tallroom2end+0.07f));
 
   for(int j = 0; j < 6; j++)
   {
@@ -1376,6 +1435,24 @@ void Sub::generate_points()
   //ROOM 7
   room_start[6] = points.size();
   //GENER8
+
+
+  points.push_back(glm::vec3(-0.6f*radius, floor3yoffset, room3end));
+  points.push_back(glm::vec3(0.6f*radius, floor3yoffset, room3end));
+  points.push_back(glm::vec3(0.6f*radius, floor3yoffset, tallroom2end+0.07f));
+
+  points.push_back(glm::vec3(-0.6f*radius, floor3yoffset, room3end));
+  points.push_back(glm::vec3(0.6f*radius, floor3yoffset, tallroom2end+0.07f));
+  points.push_back(glm::vec3(-0.6f*radius, floor3yoffset, tallroom2end+0.07f));
+  for(int i = 0; i < 6; i++)
+  {
+    normals.push_back(glm::vec3(0,1,0));
+    colors.push_back(glm::vec4(1,0,0,1));
+  }
+
+
+
+
   room_num[6] = points.size() - room_start[6];
 
   //******************************************************************************
@@ -1436,11 +1513,14 @@ void Sub::generate_points()
   points.push_back(glm::vec3(radius, floor3yoffset+0.25*radius+0.2, tallroom1end));
 
 
+
+
+
+
   for(int i = 0; i < 6; i++)
   {
     normals.push_back(glm::vec3(-1,0,0));
     colors.push_back(glm::vec4(1,0,0,1));
-
   }
 
 
@@ -1519,6 +1599,42 @@ void Sub::generate_points()
     normals.push_back(glm::vec3(1,0,0));
     colors.push_back(glm::vec4(1,0,0,1));
   }
+
+
+
+
+  //walkway
+    points.push_back(glm::vec3(0.3f*radius, floor3yoffset, tallroom2start));
+    points.push_back(glm::vec3(0.3f*radius, floor3yoffset, tallroom1end));
+    points.push_back(glm::vec3(-0.3f*radius, floor3yoffset, tallroom2start));
+
+    points.push_back(glm::vec3(-0.3f*radius, floor3yoffset, tallroom2start));
+    points.push_back(glm::vec3(0.3f*radius, floor3yoffset, tallroom1end));
+    points.push_back(glm::vec3(-0.3f*radius, floor3yoffset, tallroom1end));
+    for(int i = 0; i < 6; i++)
+    {
+      normals.push_back(glm::vec3(0,1,0));
+      colors.push_back(glm::vec4(1,0,0,1));
+    }
+
+
+
+
+
+  //walkway
+    points.push_back(glm::vec3(0.3f*radius, floor3yoffset, tallroom2end));
+    points.push_back(glm::vec3(-0.3f*radius, floor3yoffset, tallroom2end));
+    points.push_back(glm::vec3(0.3f*radius, floor3yoffset, tallroom2end+0.07f));
+
+    points.push_back(glm::vec3(-0.3f*radius, floor3yoffset, tallroom2end));
+    points.push_back(glm::vec3(-0.3f*radius, floor3yoffset, tallroom2end+0.07f));
+    points.push_back(glm::vec3(0.3f*radius, floor3yoffset, tallroom2end+0.07f));
+    for(int i = 0; i < 6; i++)
+    {
+      normals.push_back(glm::vec3(0,1,0));
+      colors.push_back(glm::vec4(1,0,0,1));
+    }
+
 
 
 
@@ -1817,7 +1933,7 @@ void Sub::display()
 
   //draw_decor_func();
 
-  //draw_engine_func();
+  draw_engine_func();
 
 
 
@@ -1855,6 +1971,14 @@ void Sub::draw_rooms_func()
 
       glDrawArrays(GL_TRIANGLES, room_start[i], room_num[i]);
     }
+}
+
+
+// //******************************************************************************
+
+void Sub::draw_engine_func()
+{
+  sub_engine.draw();
 }
 
 // //******************************************************************************

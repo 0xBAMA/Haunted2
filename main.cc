@@ -327,7 +327,6 @@ bool is_ok(glm::vec3 point)
       }
     }
 
-    return true;
     break;
 
 
@@ -341,6 +340,17 @@ bool is_ok(glm::vec3 point)
 
     if(point.y != JonDefault::floor2yoffset)
       return false;
+
+    if(abs(point.x) < 0.6f*JonDefault::radius && (point.z < JonDefault::room3end && point.z > JonDefault::tallroom2end+0.07f))
+      return true;
+
+    if(abs(point.x) < 0.3f*JonDefault::radius && (point.z < JonDefault::tallroom2end+0.07f && point.z > JonDefault::tallroom1end))
+      return true;
+
+    if(abs(point.x) < 0.75f*JonDefault::radius && (point.z < JonDefault::tallroom2end+0.07f && point.z > JonDefault::tallroom1end))
+      return true;
+
+    return false;
 
     break;
 
@@ -368,6 +378,9 @@ bool is_ok(glm::vec3 point)
     break;
 
   }
+
+  return true;
+
 }
 
 

@@ -48,6 +48,9 @@ public:
     //so there's a fair few, num_cylinders many for pistons, con rods, and the sets of valves, then one crank, and 4 cams
   void draw();
 
+
+  void set_theta(float in) {theta = in;}
+
 private:
   int crank_start, num_pts_crank;
   int conrod_start, num_pts_conrod;
@@ -55,7 +58,10 @@ private:
   int intake_valves_start, num_pts_intake_valves;
   int exhaust_valves_start, num_pts_exhaust_valves;
   int cams_start, num_pts_cams;
-  int exhaust_start, num_pts_exhaust;
+  // int exhaust_start, num_pts_exhaust;
+
+
+  float theta;
 
   //translation vectors & rotation amounts are held here, vec3s and floats
 
@@ -81,35 +87,100 @@ private:
 
 void engine::init(std::vector<glm::vec3>& points, std::vector<glm::vec3>& normals, std::vector<glm::vec4>& colors)
 {
+  theta = 0.0f;
+
+  int temp = points.size();
+
   add_crank(points, normals, colors);
   add_conrod(points, normals, colors);
   add_piston(points, normals, colors);
   add_valves(points, normals, colors);
   add_cams(points, normals, colors);
+
+  cout << "engine contains " << points.size() - temp << " points" << endl;
 }
+
+
+
+
+
+
+void engine::draw()
+{
+
+  GLint id;
+  glGetIntegerv(GL_CURRENT_PROGRAM,&id);
+
+  glUniform1i(glGetUniformLocation(id, "type"), 2);
+
+  glDrawArrays(GL_TRIANGLES, crank_start, num_pts_crank);
+  glDrawArrays(GL_TRIANGLES, conrod_start, num_pts_conrod);
+  glDrawArrays(GL_TRIANGLES, piston_start, num_pts_piston);
+  glDrawArrays(GL_TRIANGLES, intake_valves_start, num_pts_intake_valves);
+  glDrawArrays(GL_TRIANGLES, exhaust_valves_start, num_pts_exhaust_valves);
+  glDrawArrays(GL_TRIANGLES, cams_start, num_pts_cams);
+  
+}
+
+
+
+
+
+
+
 
 
 void engine::add_crank(std::vector<glm::vec3>& points, std::vector<glm::vec3>& normals, std::vector<glm::vec4>& colors)
 {
+  crank_start = points.size();
 
+  glm::vec3 norm = glm::cross(glm::vec3(0,1,0) - glm::vec3(0,0,0), glm::vec3(0,1,0) - glm::vec3(0,1,1));
+
+  points.push_back(glm::vec3(0,0,0));
+  points.push_back(glm::vec3(0,1,0));
+  points.push_back(glm::vec3(0,1,1));
+
+  normals.push_back(norm);
+  normals.push_back(norm);
+  normals.push_back(norm);
+
+  colors.push_back(glm::vec4(0,0,0,1));
+  colors.push_back(glm::vec4(0,1,0,1));
+  colors.push_back(glm::vec4(0,1,1,1));
+
+  num_pts_crank = points.size() - crank_start;
 }
 
 void engine::add_conrod(std::vector<glm::vec3>& points, std::vector<glm::vec3>& normals, std::vector<glm::vec4>& colors)
 {
+  conrod_start = points.size();
 
+  num_pts_conrod = points.size() - conrod_start;
 }
 
 void engine::add_piston(std::vector<glm::vec3>& points, std::vector<glm::vec3>& normals, std::vector<glm::vec4>& colors)
 {
+  piston_start = points.size();
 
+  num_pts_piston = points.size() - piston_start;
 }
 
 void engine::add_valves(std::vector<glm::vec3>& points, std::vector<glm::vec3>& normals, std::vector<glm::vec4>& colors)
 {
+  intake_valves_start = points.size();
 
+  num_pts_intake_valves = points.size() - intake_valves_start;
+
+
+
+  exhaust_valves_start = points.size();
+
+  num_pts_exhaust_valves = points.size() - exhaust_valves_start;
 }
 
 void engine::add_cams(std::vector<glm::vec3>& points, std::vector<glm::vec3>& normals, std::vector<glm::vec4>& colors)
 {
+  cams_start = points.size();
 
+  num_pts_cams = points.size() - cams_start;
 }

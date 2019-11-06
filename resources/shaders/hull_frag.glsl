@@ -49,9 +49,13 @@ void main()
     if(type == 1 && gl_FrontFacing)
     {
       gl_FragColor.xyz += a*vec3(0.6,0.1,0.2);
-      gl_FragColor.xyz += 5*d*vec3(0.5,0.2,0.16);
+      gl_FragColor.xyz += d*vec3(0.5,0.2,0.16);
       if(dot(n,l) > 0)
+      {
+        s = (1/(pow(0.25*distance(vpos,light_position),2))) * 1.2 * pow(max(dot(r,v),0),1000);
+
         gl_FragColor.xyz += s*vec3(0.3,0.5,0);
+      }
     }
 
     if(type == 0 && !gl_FrontFacing)
@@ -86,7 +90,16 @@ void main()
     if(type == 1 && !gl_FrontFacing)
     {
       discard;
-      // gl_FragColor = vec4(0.9,0.17,0.05,1);
+    }
+
+    if(type == 2 && !gl_FrontFacing)
+    {
+      gl_FragColor = vec4(0.9,0.17,0.05,1);
+    }
+
+    if(type == 2 && gl_FrontFacing)
+    {
+      gl_FragColor = vec4(0.9,0.17,0.05,1);
     }
 
 
