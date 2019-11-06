@@ -118,8 +118,11 @@ void main()
   if(type == 2)
   {
 
-    vPosition_local = transl8*rot8*vec4(scale*vPosition, 1.0);
-    vPosition_local = apply_roll*(apply_pitch*(apply_yaw*vPosition_local));
+    normal = (rot8*vec4(transformed_normal,0.0)).xyz;
+
+
+    vPosition_local = transl8*rot8*vec4(vPosition, 1.0);
+    vPosition_local = apply_roll*(apply_pitch*(apply_yaw*vec4(scale*vPosition_local.xyz,1)));
 
   }
 

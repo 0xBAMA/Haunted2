@@ -206,11 +206,19 @@ void keyboard(unsigned char key, int x, int y)
 
       if(outside)
       {//you're outside
+      submodel->set_view(glm::lookAt(
+          glm::vec3(0.0f, JonDefault::floor1yoffset+0.04, JonDefault::room1start+0.1),
+          glm::vec3(0.0f, 0.0f, 0.0f),
+          glm::vec3(0.0f, 1.0f, 0.0f)
+      ));
+
+      submodel->set_proj(glm::perspective(glm::radians(35.0f), 1366.0f / 768.0f, 0.0025f, 6.0f));
 
       }
       else
       {//you're inside
-
+      submodel->set_view(JonDefault::view);
+      submodel->set_proj(JonDefault::proj);
       }
 
 

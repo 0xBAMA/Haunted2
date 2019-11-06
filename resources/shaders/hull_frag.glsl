@@ -92,15 +92,34 @@ void main()
       discard;
     }
 
-    if(type == 2 && !gl_FrontFacing)
+    if(type == 2 && !gl_FrontFacing || type == 2 && gl_FrontFacing)
     {
-      gl_FragColor = vec4(0.9,0.17,0.05,1);
+      // gl_FragColor = vec4(0.9,0.17,0.05,1);
+      gl_FragColor = gl_FragColor.rgra;
+
+      gl_FragColor = vec4(0.1,0.17,0.05,1);
+
+      float a = 0.1;
+      gl_FragColor.xyz += a*vec3(0,0.1,0.16);
+
+      n = -n;
+      float d = (1/(pow(0.25*distance(vpos,light_position),2))) * 1.28 * max(dot(n, l),0);
+      gl_FragColor.xyz += d*vec3(0.22,0.22,0);
+
+      r = normalize(reflect(l,-n));
+      float s = (1/(pow(0.25*distance(vpos,light_position),2))) * 1.28 * pow(max(dot(r,v),0),3);
+
+
+      //apply specular to the front face only
+      if(dot(n,l) > 0)
+        gl_FragColor.xyz += s*vec3(vec2(0.35),0);
+
     }
 
-    if(type == 2 && gl_FrontFacing)
-    {
-      gl_FragColor = vec4(0.9,0.17,0.05,1);
-    }
+    // if(type == 2 && gl_FrontFacing)
+    // {
+    //   // gl_FragColor = vec4(0.9,0.17,0.05,1);
+    // }
 
 
   // int fcxmod = int(gl_FragCoord.x) % 2;

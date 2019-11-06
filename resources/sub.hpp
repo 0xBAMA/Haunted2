@@ -728,7 +728,7 @@ void Sub::generate_points()
   }
 
 
-  float twopi = 2*3.1415926535;
+  float twopi = JonDefault::twopi;
   float rot_inc = twopi/400;
 
   //cylinders +/- x

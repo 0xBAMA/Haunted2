@@ -72,7 +72,7 @@ namespace JonDefault{
         glm::vec3(0.0f, 1.0f, 0.0f)
     );
 
-    glm::mat4 proj = glm::perspective(glm::radians(65.0f), 1366.0f / 768.0f, 0.25f, 4.0f);
+    glm::mat4 proj = glm::perspective(glm::radians(65.0f), 1366.0f / 768.0f, 0.25f, 6.0f);
 
     glm::vec3 player_position = glm::vec3(0,0.1,0);
     glm::vec3 player_forward = glm::vec3(0,0,1);   //+z
@@ -89,6 +89,9 @@ namespace JonDefault{
       threetotwo=6,
       twotoone=7
     } state;
+
+
+    float twopi = 2*3.1415926535;
 
 
     float room1start = -0.558f;
